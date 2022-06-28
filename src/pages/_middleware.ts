@@ -1,6 +1,6 @@
-import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(req: NextRequest, ev: NextFetchEvent) {
+export async function middleware(req: NextRequest) {
     if (
         req.nextUrl.pathname.startsWith("/api/") ||
         req.nextUrl.pathname === "/"
@@ -11,11 +11,11 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 
     const slugFetch = await fetch(`${req.nextUrl.origin}/api/get-url/${slug}`);
     if (slugFetch.status === 404) {
-        return NextResponse.redirect(req.nextUrl.origin);
+        return NextResponse.rewrite(req.nextUrl.origin);
     }
     const data = await slugFetch.json();
 
     if (data?.url) {
-        return NextResponse.redirect(data.url);
+        return NextResponse.rewrite(data.url);
     }
 }
