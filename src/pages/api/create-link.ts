@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from "@/db/client";
-import { nanoid } from "nanoid";
+import { customAlphabet } from "nanoid";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { link } = JSON.parse(req.body);
@@ -28,6 +28,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         return;
     }
+
+    const nanoid = customAlphabet('qwertyuiopasdfghjklzxcvbnm', 10);
 
     const newLink = await prisma.shortLink.create({
         data: {
