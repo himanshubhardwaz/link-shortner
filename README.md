@@ -1,3 +1,5 @@
-# Link shortner app (work in progress) UI Remaining:
+# Link shortner app
 
-hardcoded working link: https://shortner.thehb.lol/my
+## Used nextjs, typescript
+
+### cached similar hits on lambdas (deployed on vercel)
