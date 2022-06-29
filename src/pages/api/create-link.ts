@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
     }
 
-    const nanoid = customAlphabet('qwertyuiopasdfghjklzxcvbnm', 10);
+    const nanoid = customAlphabet('qwertyuiopasdfghjklzxcvbnm', 6);
 
     const newLink = await prisma.shortLink.create({
         data: {
